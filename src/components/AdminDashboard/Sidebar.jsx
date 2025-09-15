@@ -4,11 +4,11 @@ const Sidebar = () => {
   const { pathname } = useLocation();
 
   const navItems = [
-    { name: "Dashboard", path: "/" },
-    { name: "Projects", path: "/projects" },
-    { name: "Skills", path: "/skills" },
-    { name: "Experience", path: "/experience" },
-    { name: "Contact", path: "/contacts" },
+    { name: "Dashboard", path: "/admin" },
+    { name: "Projects", path: "/admin/projects" },
+    { name: "Skills", path: "/admin/skills" },
+    { name: "Experience", path: "/admin/experience" },
+    { name: "Contact", path: "/admin/contacts" },
   ];
 
   return (

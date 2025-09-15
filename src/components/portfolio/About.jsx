@@ -1,72 +1,69 @@
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <div className="flex flex-col md:flex-row items-center gap-14 md:gap-20">
-          {/* Profile Image */}
-          <div className="flex-shrink-0 mb-8 md:mb-0">
-            <div className="w-48 h-48 rounded-2xl overflow-hidden shadow-xl border-4 border-blue-500/20 bg-gray-100 dark:bg-gray-800 transition-shadow duration-300 hover:shadow-2xl">
-              {/* Replace src with your image path */}
-              <img
-                src="/profile.jpg"
-                alt="Your Name"
-                className="w-full h-full object-cover"
-              />
+    <section id="about" className="section">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-number">02.</span>
+          <h2 className="section-title">About Me</h2>
+          <div className="section-line"></div>
+        </div>
+        <div className="about-content">
+          <div className="about-grid">
+            {/* Profile Image */}
+            <div className="profile-image-container">
+              <div className="profile-image">
+                <img
+                  src="/profile.jpg"
+                  alt="Sanjeet Mijar"
+                  className="profile-img"
+                />
+              </div>
             </div>
-          </div>
-          {/* About Content */}
-          <div className="flex-1 w-full">
-            <div className="flex items-center mb-6">
-              <span className="text-blue-600 dark:text-blue-400 font-mono text-lg mr-2">01.</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mr-4">
-                About Me
-              </h2>
-              <div className="flex-grow h-px bg-gray-200 dark:bg-gray-700"></div>
-            </div>
-            <div className="space-y-5 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              <p>
+            {/* About Content */}
+            <div className="about-text">
+              <p className="about-intro">
                 Hello! I'm{" "}
-                <span className="font-semibold text-blue-600 dark:text-blue-400">
-                  John Doe
+                <span className="highlight-name">
+                  Sanjeet Mijar
                 </span>
                 , a passionate full-stack developer focused on building efficient, scalable, and user-friendly applications.
               </p>
-              <p>
+              <p className="about-description">
                 I enjoy tackling complex problems and turning them into simple, elegant solutions. My goal is to build software that not only works flawlessly but also provides an exceptional user experience.
               </p>
-              <p>
+              <p className="about-description">
                 When I'm not coding, I explore new technologies, contribute to open-source, or share knowledge with tech communities.
               </p>
-              <ul className="mt-6 space-y-1 text-base">
-                <li>
-                  <span className="font-semibold">🌍 Location:</span>{" "}
-                  <span className="text-gray-900 dark:text-gray-100">Your City, Country</span>
-                </li>
-                <li>
-                  <span className="font-semibold">📧 Email:</span>{" "}
+              <div className="contact-info">
+                <div className="contact-item">
+                  <span className="contact-label">🌍 Location:</span>
+                  <span className="contact-value">Bagdol, Lalitpur</span>
+                </div>
+                <div className="contact-item">
+                  <span className="contact-label">📧 Email:</span>
                   <a
-                    href="mailto:your.email@example.com"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    href="mailto:sanjeet.mijar@example.com"
+                    className="contact-link"
                   >
-                    your.email@example.com
+                    sanjeet.mijar@example.com
                   </a>
-                </li>
-                <li>
-                  <span className="font-semibold">🔗 LinkedIn:</span>{" "}
+                </div>
+                <div className="contact-item">
+                  <span className="contact-label">🔗 LinkedIn:</span>
                   <a
-                    href="https://linkedin.com/in/yourprofile"
+                    href="https://linkedin.com/in/sanjeetmijar"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="contact-link"
                   >
-                    linkedin.com/in/yourprofile
+                    linkedin.com/in/sanjeetmijar
                   </a>
-                </li>
-              </ul>
-              <div className="mt-7">
-                <span className="font-semibold">Skills:</span>
-                <div className="flex flex-wrap gap-2 mt-2">
+                </div>
+              </div>
+              <div className="skills-section">
+                <span className="skills-label">Skills:</span>
+                <div className="skills-container">
                   {[
                     "JavaScript",
                     "React",
@@ -78,12 +75,11 @@ const About = () => {
                   ].map((skill) => (
                     <span
                       key={skill}
-                      className="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium"
+                      className="skill-tag"
                     >
                       {skill}
                     </span>
                   ))}
-                  {/* Add more skills as needed */}
                 </div>
               </div>
             </div>
