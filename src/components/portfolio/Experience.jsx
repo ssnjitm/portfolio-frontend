@@ -23,26 +23,27 @@ export default function ExperienceSection() {
   }, []);
 
   return (
-    <section className="section" id="experience">
-      <div className="container">
-        <div className="section-header">
-          <span className="section-number">01.</span>
-          <h2 className="section-title">Experience</h2>
-          <div className="section-line"></div>
+    <section className="py-20 bg-white dark:bg-gray-900" id="experience">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="inline-flex items-center justify-center text-3xl font-bold text-gray-800 dark:text-white">
+            <span className="text-blue-600 mr-3 text-xl">01.</span> Experience
+          </h2>
+          <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
         </div>
-        <div>
-          {loading && <p>Loading experience…</p>}
-          {error && !loading && <p className="text-red-600">{error}</p>}
-          {!loading && !error && items.length === 0 && <p>No experience yet.</p>}
+        <div className="space-y-8">
+          {loading && <p className="text-center text-gray-600 dark:text-gray-400">Loading experience…</p>}
+          {error && !loading && <p className="text-red-600 text-center">{error}</p>}
+          {!loading && !error && items.length === 0 && <p className="text-center text-gray-600 dark:text-gray-400">No experience yet.</p>}
           {!loading && !error && items.map((exp) => (
-            <div key={exp._id} className="experience-item" style={{marginBottom: "2rem"}}>
-              <h3 style={{marginBottom: "0.25rem"}}>
-                {exp.role} <span style={{color: "var(--accent-primary)"}}>@ {exp.companyName}</span>
+            <div key={exp._id} className="experience-item">
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-1">
+                {exp.role} <span className="text-blue-600">@ {exp.companyName}</span>
               </h3>
-              <div style={{color: "var(--text-tertiary)", fontSize: "0.95rem", marginBottom: "0.5rem"}}>
+              <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
                 {exp.from ? new Date(exp.from).toLocaleDateString() : ''} - {exp.current ? 'Present' : (exp.to ? new Date(exp.to).toLocaleDateString() : '—')}
               </div>
-              <p style={{color: "var(--text-secondary)"}}>{exp.description}</p>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{exp.description}</p>
             </div>
           ))}
         </div>

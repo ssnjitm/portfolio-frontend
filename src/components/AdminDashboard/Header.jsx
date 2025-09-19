@@ -1,19 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    navigate('/');
-  };
-
   return (
-    <header className="bg-white shadow p-4 flex justify-between items-center">
-      <h2 className="text-xl font-semibold">Admin Dashboard</h2>
-      <button onClick={handleLogout} className="text-sm bg-red-500 text-white px-3 py-1 rounded">Logout</button>
-    </header>
-  );
-};
+    <div className='flex justify-between items-center px-4 border-b border-gray-300 dark:border-gray-700 h-18 mb-0'>
+      
+            <div className="logo flex items-center space-x-1 cursor-pointer mt-4 ">
+            <span className="text-2xl font-bold text-blue-600">{`{`}</span>
+            <span className="text-xl font-bold text-gray-800 dark:text-white">Admin Portal</span>
+            <span className="text-2xl font-bold text-blue-600">{`}`}</span>
+            </div>
 
-export default Header;
+            <div className="nav-links hidden md:flex items-center space-x-8 mt-4 cursor-pointer">
+                <span className="text-gray-800 dark:text-white">Redirect to main site</span>
+            </div>
+            <div> <span className="text-gray-800 dark:text-white cursor-pointer font-bold">Logout</span></div>
+               
+
+    </div>  
+  )
+}
+
+export default Header

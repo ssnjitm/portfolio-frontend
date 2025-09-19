@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {Card, CardFooter, Image, Button} from "@heroui/react";
 import api from '../../utils/api.js';
 
 const Skills = () => {
@@ -24,51 +23,46 @@ const Skills = () => {
   }, []);
 
   return (
-    <section id="skills" className="section">
-      <div className="container">
-        <div className="section-header">
-          <h2 className="section-title"><span className="section-number">04.</span> Skills</h2>
-          <div className="section-line"></div>
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2 className="inline-flex items-center justify-center text-3xl font-bold text-gray-800 dark:text-white">
+            <span className="text-blue-600 mr-3 text-xl">04.</span> Skills
+          </h2>
+          <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
         </div>
-        <div className="skills-content grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {loading && <p>Loading skills…</p>}
-          {error && !loading && <p className="text-red-600">{error}</p>}
-          {!loading && !error && skills.length === 0 && <p>No skills yet.</p>}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {loading && <p className="col-span-full text-center text-gray-600 dark:text-gray-400">Loading skills…</p>}
+          {error && !loading && <p className="col-span-full text-center text-red-600">{error}</p>}
+          {!loading && !error && skills.length === 0 && <p className="col-span-full text-center text-gray-600 dark:text-gray-400">No skills yet.</p>}
           {!loading && !error && skills.map((skill) => (
-            <Card key={skill._id} className="border-none p-4 flex flex-col items-center text-center" radius="lg">
+            <div key={skill._id} className="flex flex-col items-center text-center bg-white dark:bg-gray-700 rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-600">
               {skill.imageUrl && (
-                <Image alt={skill.name} className="object-cover" height={80} width={80} src={skill.imageUrl} />
+                <img alt={skill.name} className="w-20 h-20 object-cover rounded-lg mb-3" src={skill.imageUrl} />
               )}
-              <div className="mt-2">
-                <h4 className="font-medium">{skill.name}</h4>
-                {skill.category && <p className="text-xs text-gray-500">{skill.category}</p>}
-                {skill.level && <p className="text-xs text-gray-500">{skill.level}</p>}
+              <div>
+                <h4 className="font-medium text-gray-800 dark:text-white">{skill.name}</h4>
+                {skill.category && <p className="text-xs text-gray-500 dark:text-gray-400">{skill.category}</p>}
+                {skill.level && <p className="text-xs text-gray-500 dark:text-gray-400">{skill.level}</p>}
               </div>
-            </Card>
+            </div>
           ))}
         </div>
-
-        <Card isFooterBlurred className="border-none" radius="lg">
-      <Image
-        alt="Woman listing to music"
-        className="object-cover"
-        height={200}
-        src="https://heroui.com/images/hero-card.jpeg"
-        width={200}
-      />
-      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <p className="text-tiny text-white/80">Explore my skills.</p>
-        <Button
-          className="text-tiny text-white bg-black/20"
-          color="default"
-          radius="lg"
-          size="sm"
-          variant="flat"
-        >
-          Notify me
-        </Button>
-      </CardFooter>
-    </Card>
+        <div className="mt-8 flex justify-center">
+          <div className="relative w-48 h-48 bg-white dark:bg-gray-700 rounded-xl shadow-lg border border-gray-200 dark:border-gray-600 overflow-hidden">
+            <img
+              alt="Explore my skills"
+              className="w-full h-full object-cover"
+              src="https://heroui.com/images/hero-card.jpeg"
+            />
+            <div className="absolute bottom-1 left-1 right-1 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 rounded-lg p-2 flex justify-between items-center">
+              <p className="text-xs text-white/80">Explore my skills.</p>
+              <button className="text-xs text-white bg-black/20 px-3 py-1 rounded-lg hover:bg-black/30 transition-colors duration-200">
+                Notify me
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
