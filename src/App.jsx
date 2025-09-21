@@ -9,6 +9,8 @@ import Hero from './components/portfolio/Hero.jsx';
 import Projects from './components/portfolio/Projects.jsx';
 import Skills from './components/portfolio/Skills.jsx';
 import MainPage from './pages/AdminPages/MainPage.jsx';
+import AdminSkills from './pages/AdminPages/AdminSkills.jsx';
+import ProjectsAdmin from './pages/AdminPages/AdminProjects.jsx';
 // import Layout from './components/AdminDashboard/Layout.jsx';
 // import Login from './pages/AdminPages/Login.jsx';
 // import ProjectsAdmin from './pages/AdminPages/Projects.jsx';
@@ -41,6 +43,9 @@ const App = () => {
           }
         />
         <Route path="/admin" element={<MainPage />} />
+        <Route path="/admin/skills" element={<AdminSkills />} />
+        <Route path="/admin/projects" element={<ProjectsAdmin />} />
+
 
         <Route path="*" element={<div style={{padding: 24}}>Not Found</div>} />
       </Routes>

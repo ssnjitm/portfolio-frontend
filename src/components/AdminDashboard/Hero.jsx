@@ -45,12 +45,11 @@ const HeroSection = () => {
     <section className="bg-white text-white  md:py-2 lg:py-2 dark:bg-gray-900 mb-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Our Platform</h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Discover our projects, skills, experiences, and more. Connect with us and explore opportunities.
-          </p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-blue-600 dark:text-white">Portfolio Management System</h1>
+          
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
           {sections.map((section, index) => (
             <SectionCard
               key={index}
@@ -65,3 +64,5 @@ const HeroSection = () => {
     </section>
   );
 };
+
+export default HeroSection;
