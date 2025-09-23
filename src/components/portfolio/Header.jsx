@@ -15,7 +15,7 @@ const Header = () => {
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${scrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)]' : 'bg-transparent shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.05)]'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex justify-between items-center py-4">
-          <div className="logo flex items-center space-x-1">
+          <div className="logo flex items-center space-x-1 cursor-pointer">
             <span className="text-2xl font-bold text-blue-600">{`{`}</span>
             <span className="text-xl font-bold text-gray-800 dark:text-white">SANJEET MIJAR</span>
             <span className="text-2xl font-bold text-blue-600">{`}`}</span>

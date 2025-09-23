@@ -11,6 +11,10 @@ import Skills from './components/portfolio/Skills.jsx';
 import MainPage from './pages/AdminPages/MainPage.jsx';
 import AdminSkills from './pages/AdminPages/AdminSkills.jsx';
 import ProjectsAdmin from './pages/AdminPages/AdminProjects.jsx';
+import ContactAdmin from './pages/AdminPages/AdminContact.jsx';
+import AdminExperience from './pages/AdminPages/AdminExperience.jsx';
+import AdminWebContent from './pages/AdminPages/AdminWebContent.jsx';
+import AdminProfile from './pages/AdminPages/AdminProfile.jsx';
 // import Layout from './components/AdminDashboard/Layout.jsx';
 // import Login from './pages/AdminPages/Login.jsx';
 // import ProjectsAdmin from './pages/AdminPages/Projects.jsx';
@@ -45,7 +49,10 @@ const App = () => {
         <Route path="/admin" element={<MainPage />} />
         <Route path="/admin/skills" element={<AdminSkills />} />
         <Route path="/admin/projects" element={<ProjectsAdmin />} />
-
+        <Route path="/admin/contact" element={<ContactAdmin />} />
+        <Route path="/admin/experience" element={<AdminExperience />} />
+        <Route path="/admin/web-content" element={<AdminWebContent />} />
+        <Route path="/admin/profile" element={<AdminProfile />} />
 
         <Route path="*" element={<div style={{padding: 24}}>Not Found</div>} />
       </Routes>
