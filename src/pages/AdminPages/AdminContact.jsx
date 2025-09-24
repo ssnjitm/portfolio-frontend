@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useContactStore from "../../store/useContactStore";
+import Header from "../../components/AdminDashboard/Header";
 
 function AdminContact() {
   const {
@@ -22,6 +23,10 @@ function AdminContact() {
       twitter: "",
       facebook: "",
       instagram: "",
+      upwork:"",
+      fiverr:"",
+      viber:"",
+      whatsapp:"",
     },
   });
 
@@ -38,7 +43,7 @@ function AdminContact() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (
-      ["github", "linkedin", "twitter", "facebook", "instagram"].includes(name)
+      ["github", "linkedin", "twitter", "facebook", "instagram", "upwork", "fiverr","viber","whatsapp"].includes(name)
     ) {
       setForm({
         ...form,
@@ -57,6 +62,7 @@ function AdminContact() {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      <Header/>
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Manage Contact Info</h2>
 
       {/* Display Contact Info in a Table-like Card */}
@@ -157,7 +163,7 @@ function AdminContact() {
               <hr className="my-2" />
               <h4 className="text-lg font-medium">Social Links</h4>
 
-              {["github", "linkedin", "twitter", "facebook", "instagram"].map(
+              {["github", "linkedin", "twitter", "facebook", "instagram", "upwork", "fiverr"].map(
                 (field) => (
                   <input
                     key={field}

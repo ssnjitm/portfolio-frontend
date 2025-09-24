@@ -12,11 +12,11 @@ const useAuthStore = create((set) => ({
   login: async (email, password) => {
     set({ loading: true, error: null, success: null });
     try {
-      const res = await axios.post(`${API_URL}/login`, { email, password });
-      const { accessToken } = res.data.data; // Adjust if your response differs
-      localStorage.setItem("token", accessToken);
+      const res = await axios.post(`${API_URL}/login`, { email, password }, { withCredentials: true });
+      const token = res.data.data.accessToken;
+      localStorage.setItem("token", token);
 
-      set({ success: "Login successful", loading: false });
+      set({ admin: res.data.data.admin, success: "Logged in ✅", loading: false });
       return true;
     } catch (err) {
       set({
@@ -28,16 +28,13 @@ const useAuthStore = create((set) => ({
   },
 
   logout: async () => {
-    const token = localStorage.getItem("token");
     try {
-      await axios.post(
-        `${API_URL}/logout`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-    } catch {
-      /* ignore */
-    }
+      const token = localStorage.getItem("token");
+      await axios.post(`${API_URL}/logout`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true,
+      });
+    } catch { /* ignore */ }
     localStorage.removeItem("token");
     set({ admin: null });
   },
@@ -52,7 +49,7 @@ const useAuthStore = create((set) => ({
       set({ admin: res.data.data, loading: false });
     } catch (err) {
       set({
-        error: err.response?.data?.message || "Failed to fetch profile",
+        error: err.response?.data?.message || "Could not fetch profile",
         loading: false,
       });
     }
@@ -71,7 +68,7 @@ const useAuthStore = create((set) => ({
       set({ admin: res.data.data, success: "Profile updated ✅", loading: false });
     } catch (err) {
       set({
-        error: err.response?.data?.message || "Failed to update profile ❌",
+        error: err.response?.data?.message || "Update failed ❌",
         loading: false,
       });
     }
@@ -82,17 +79,14 @@ const useAuthStore = create((set) => ({
     try {
       const token = localStorage.getItem("token");
       await axios.patch(
-        "http://localhost:8000/api/v1/change-password",
+        `${API_URL}/change-password`,
         { currentPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       set({ success: "Password changed ✅", loading: false });
       return true;
     } catch (err) {
-      set({
-        error: err.response?.data?.message || "Failed to change password ❌",
-        loading: false,
-      });
+      set({ error: err.response?.data?.message || "Change password failed ❌", loading: false });
       return false;
     }
   },

@@ -15,18 +15,16 @@ import ContactAdmin from './pages/AdminPages/AdminContact.jsx';
 import AdminExperience from './pages/AdminPages/AdminExperience.jsx';
 import AdminWebContent from './pages/AdminPages/AdminWebContent.jsx';
 import AdminProfile from './pages/AdminPages/AdminProfile.jsx';
-// import Layout from './components/AdminDashboard/Layout.jsx';
-// import Login from './pages/AdminPages/Login.jsx';
-// import ProjectsAdmin from './pages/AdminPages/Projects.jsx';
-// import SkillsAdmin from './pages/AdminPages/Skills.jsx';
-// import ExperienceAdmin from './pages/AdminPages/Experience.jsx';
-// import ProtectedRoute from './components/AdminDashboard/ProtectedRoute.jsx';
-// import ContactAdmin from './pages/AdminPages/Contact.jsx';
-// import Admin from './components/AdminDashboard/Admin.jsx';
+import AdminLogin from './pages/AdminPages/AdminLogin.jsx';
+
+//protected route
+import ProtectedRoute from "./components/AdminDashboard/ProtectedRoute.jsx"; 
+
+
 
 const App = () => {
   return (
-    <BrowserRouter>
+ <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -46,15 +44,68 @@ const App = () => {
             </>
           }
         />
-        <Route path="/admin" element={<MainPage />} />
-        <Route path="/admin/skills" element={<AdminSkills />} />
-        <Route path="/admin/projects" element={<ProjectsAdmin />} />
-        <Route path="/admin/contact" element={<ContactAdmin />} />
-        <Route path="/admin/experience" element={<AdminExperience />} />
-        <Route path="/admin/web-content" element={<AdminWebContent />} />
-        <Route path="/admin/profile" element={<AdminProfile />} />
 
-        <Route path="*" element={<div style={{padding: 24}}>Not Found</div>} />
+        {/* Admin routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <MainPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/skills"
+          element={
+            <ProtectedRoute>
+              <AdminSkills />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/projects"
+          element={
+            <ProtectedRoute>
+              <ProjectsAdmin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/contact"
+          element={
+            <ProtectedRoute>
+              <ContactAdmin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/experience"
+          element={
+            <ProtectedRoute>
+              <AdminExperience />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/web-content"
+          element={
+            <ProtectedRoute>
+              <AdminWebContent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/profile"
+          element={
+            <ProtectedRoute>
+              <AdminProfile />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="*" element={<div style={{ padding: 24 }}>Not Found</div>} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,26 @@
+import { useEffect } from "react";
+import useWebContentStore from "../../store/useWebContentStore";
+import TypingEffect from "./TypingEffect";
+
 const Hero = () => {
+
+const {
+    webContent,
+    fetchWebContent,
+    error,
+    loading,
+    success,
+  } = useWebContentStore();
+
+useEffect(() => {
+    fetchWebContent();
+  }, [fetchWebContent]);
+
+
+  if (loading) return <p>Loading content...</p>;
+  if (error) return <p className="text-red-600">{error}</p>;
+  if (!webContent) return <p>No content available</p>;
+
   const codeSnippet = `
 <span class="code-comment">// Welcome to my portfolio</span>
 <span class="code-keyword">class</span> <span class="code-class">Developer</span> {
@@ -34,8 +56,11 @@ console.<span class="code-function">log</span>(me.<span class="code-function">sa
           }
         `}
       </style>
+      
       <section className="hero min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 pt-20" id="hero">
+        
         <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                       
           <div className="hero-content flex flex-col lg:flex-row items-center gap-12">
             <div className="hero-text flex-1 text-center lg:text-left">
               <div className="tag-line inline-flex items-center justify-center lg:justify-start mb-6 text-lg font-mono">
@@ -45,12 +70,15 @@ console.<span class="code-function">log</span>(me.<span class="code-function">sa
                 <span className="curly-brace text-blue-600">{'{'}</span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4 leading-tight" data-text="Sanjeet Mijar">Sanjeet Mijar</h1>
-              <h2 className="text-2xl text-gray-600 dark:text-gray-300 mb-6 font-semibold">Full-Stack Developer</h2>
+              <h2 className="text-2xl text-gray-600 dark:text-gray-300 mb-6 font-semibold">{webContent.heroTitle}</h2>
               <p className="hero-description text-gray-600 dark:text-gray-400 text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
-                I build exceptional digital experiences with clean, efficient code. Specializing in modern web technologies and scalable architecture.
+                {webContent.heroDescription}
               </p>
+          
               <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <a href="#projects" className="btn btn-primary inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md">Download CV</a>
+                <a href={webContent.downloadCVLink}
+                download
+                 className="btn btn-primary inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-md">Download CV</a>
                 <a href="#contact" className="btn btn-outline inline-block border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-all duration-200">Contact Me</a>
               </div>
               <div className="tag-line closing inline-flex items-center justify-center lg:justify-start mt-6 text-lg font-mono">

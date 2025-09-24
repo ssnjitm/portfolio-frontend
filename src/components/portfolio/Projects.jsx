@@ -27,7 +27,7 @@ const Projects = () => {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="section-header mb-12 text-center">
           <h2 className="section-title inline-flex items-center justify-center text-3xl font-bold text-gray-800 dark:text-white">
-            <span className="section-number text-blue-600 mr-3 text-xl">03.</span> Projects
+            <span className="section-number text-blue-600 mr-3 text-xl"></span> Projects
           </h2>
           <div className="section-line w-24 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
         </div>

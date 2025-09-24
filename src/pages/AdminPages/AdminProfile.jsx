@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import useAuthStore from "../../store/useAuthStore";
 
 export default function AdminProfile() {
-  const { admin, fetchProfile, updateProfile, changePassword, loading, error } =
+  const { admin, fetchProfile, updateProfile, changePassword, logout, loading, error, success } =
     useAuthStore();
 
   const [form, setForm] = useState({
-    fullName: "",
     email: "",
-    phone: "",
-    location: "",
+    password: "",
+
   });
   const [passwords, setPasswords] = useState({
     currentPassword: "",
@@ -23,124 +22,55 @@ export default function AdminProfile() {
   useEffect(() => {
     if (admin) {
       setForm({
-        fullName: admin.fullName || "",
         email: admin.email || "",
-        phone: admin.phone || "",
-        location: admin.location || "",
+        password: admin.password || "",
       });
     }
   }, [admin]);
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (files?.[0]) setForm({ ...form, [name]: files[0] });
+    else setForm({ ...form, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await updateProfile(form);
+    const formData = new FormData();
+    formData.append("email", form.email);
+    formData.append("password", form.password);
+    await updateProfile(formData);
   };
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
-    const success = await changePassword(
-      passwords.currentPassword,
-      passwords.newPassword
-    );
-    if (success) setPasswords({ currentPassword: "", newPassword: "" });
+    await changePassword(passwords.currentPassword, passwords.newPassword);
+    setPasswords({ currentPassword: "", newPassword: "" });
   };
-
-  if (loading && !admin) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Admin Profile</h1>
-
       {error && <p className="text-red-500 mb-4">{error}</p>}
+      {success && <p className="text-green-600 mb-4">{success}</p>}
 
-      {/* Profile Update Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded-lg p-6 mb-8"
-      >
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 mb-8">
         <h2 className="text-xl font-semibold mb-4">Update Profile</h2>
+        <input type="text" name="email" value={form.email} onChange={handleChange} placeholder="Email" className="mb-2 border px-3 py-2 w-full" />
+        <input type="password" name="password" value={form.password} onChange={handleChange} placeholder="Password" className="mb-2 border px-3 py-2 w-full" />
+  
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            value={form.fullName}
-            onChange={handleChange}
-            className="border rounded px-3 py-2 w-full"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="border rounded px-3 py-2 w-full"
-          />
-          <input
-            type="text"
-            name="phone"
-            placeholder="Phone"
-            value={form.phone}
-            onChange={handleChange}
-            className="border rounded px-3 py-2 w-full"
-          />
-          <input
-            type="text"
-            name="location"
-            placeholder="Location"
-            value={form.location}
-            onChange={handleChange}
-            className="border rounded px-3 py-2 w-full"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          Save Changes
-        </button>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Save Changes</button>
       </form>
 
-      {/* Change Password Form */}
-      <form
-        onSubmit={handlePasswordChange}
-        className="bg-white shadow-md rounded-lg p-6"
-      >
+      <form onSubmit={handlePasswordChange} className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-4">Change Password</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            type="password"
-            placeholder="Current Password"
-            value={passwords.currentPassword}
-            onChange={(e) =>
-              setPasswords({ ...passwords, currentPassword: e.target.value })
-            }
-            className="border rounded px-3 py-2 w-full"
-          />
-          <input
-            type="password"
-            placeholder="New Password"
-            value={passwords.newPassword}
-            onChange={(e) =>
-              setPasswords({ ...passwords, newPassword: e.target.value })
-            }
-            className="border rounded px-3 py-2 w-full"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          Update Password
-        </button>
+        <input type="password" name="currentPassword" value={passwords.currentPassword} onChange={(e) => setPasswords({ ...passwords, currentPassword: e.target.value })} placeholder="Current Password" className="border mb-2 w-full px-3 py-2" />
+        <input type="password" name="newPassword" value={passwords.newPassword} onChange={(e) => setPasswords({ ...passwords, newPassword: e.target.value })} placeholder="New Password" className="border mb-4 w-full px-3 py-2" />
+        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Update Password</button>
       </form>
+
+      <button onClick={logout} className="mt-6 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700">Logout</button>
     </div>
   );
 }

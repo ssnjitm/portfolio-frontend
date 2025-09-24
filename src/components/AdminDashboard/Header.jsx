@@ -1,8 +1,14 @@
-import React from 'react'
+// import React from 'react'
+// import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+
+  
   return (
-    <div className='flex justify-between items-center px-4 border-b border-gray-300 dark:border-gray-700 h-18 mb-0'>
+    
+    <div
+    
+     className='flex justify-between items-center px-4 border-b border-gray-300 dark:border-gray-700 h-18 mb-0'>
             <div
             className="logo flex items-center space-x-1 cursor-pointer mt-4 ">
             <span className="text-2xl font-bold text-blue-600">{`{`}</span>
@@ -10,8 +16,11 @@ const Header = () => {
             <span className="text-2xl font-bold text-blue-600">{`}`}</span>
             </div>
 
-            <div className="nav-links hidden md:flex items-center space-x-8 mt-4 cursor-pointer">
-                <span className="text-gray-800 dark:text-white">Redirect to main site</span>
+            <div 
+            
+            className="nav-links hidden md:flex items-center space-x-8 mt-4 cursor-pointer">
+                <span 
+                className="text-gray-800 dark:text-white">Redirect to main site</span>
             </div>
             <div> <span className="text-gray-800 dark:text-white cursor-pointer font-bold">Logout</span></div>
             {/* Profile Button */}

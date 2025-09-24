@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../store/useAuthStore";
+import useAuthStore from "../../store/useAuthStore";
 
 export default function AdminLogin() {
   const { login, loading, error } = useAuthStore();
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -12,10 +12,8 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const success = await login(form.email, form.password);
-    if (success) {
-      navigate("/admin/profile");
-    }
+    const success = await login(form.username, form.password);
+    if (success) navigate("/admin");
   };
 
   return (
@@ -25,20 +23,20 @@ export default function AdminLogin() {
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="email"
-            name="email"
-            value={form.email}
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={form.username}
             onChange={handleChange}
-            placeholder="Email"
             className="w-full px-3 py-2 border rounded-lg"
             required
           />
           <input
             type="password"
             name="password"
+            placeholder="Password"
             value={form.password}
             onChange={handleChange}
-            placeholder="Password"
             className="w-full px-3 py-2 border rounded-lg"
             required
           />

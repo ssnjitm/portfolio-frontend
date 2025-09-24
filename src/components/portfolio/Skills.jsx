@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../utils/api.js';
 import LogoLoop from './LogoLoop.jsx';
+import { FaLaptopCode, FaMobileAlt, FaCode, FaPaintBrush, FaEye, FaBullhorn, FaMobile } from "react-icons/fa";
+
 // import { SiReact,  SiMongodb, SiExpress } from "react-icons/si";
 // import { SiNextdotjs, SiTypescript, SiTailwindcss } from "react-icons/si";
 import { 
@@ -56,7 +58,7 @@ const techLogos = [
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <h2 className="inline-flex items-center justify-center text-3xl font-bold text-gray-800 dark:text-white">
-            <span className="text-blue-600 mr-3 text-xl">04.</span> Skills
+            <span className="text-blue-600 mr-3 text-xl"></span> Skills
           </h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded"></div>
         </div>
@@ -88,6 +90,39 @@ const techLogos = [
                 className="w-20 h-20 mb-3"
                 style={{ borderRadius: '0.5rem' }}
               />
+              {/* Services Section */}
+<div className="mt-16">
+  <h3 className="text-center text-2xl font-bold text-gray-800 dark:text-white mb-10">
+    Services Provided By Me
+  </h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    {[
+      { title: "Web Design", desc: "Crafting visually appealing and user-friendly websites.", icon: <FaLaptopCode className="text-blue-600 text-2xl" /> },
+      { title: "Fully Responsive", desc: "Ensuring seamless experiences on all devices.", icon: <FaMobileAlt className="text-blue-600 text-2xl" /> },
+      { title: "Development", desc: "Building robust, scalable, and secure applications.", icon: <FaCode className="text-blue-600 text-2xl" /> },
+      { title: "Creative Design", desc: "Designs that blend creativity with functionality.", icon: <FaPaintBrush className="text-blue-600 text-2xl" /> },
+     { title: "Android & iOS App Development", desc: "Cross-platform mobile apps with Flutter for Android and iOS.", icon: <FaMobile className="text-blue-600 text-2xl" /> },
+      { title: "Branding", desc: "Helping brands stand out with strong digital presence.", icon: <FaBullhorn className="text-blue-600 text-2xl" /> },
+    ].map((service, i) => (
+      <div
+        key={i}
+        className="flex flex-col items-center text-center bg-white dark:bg-gray-700 
+                   rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 
+                   border border-gray-200 dark:border-gray-600"
+      >
+        <div className="w-14 h-14 flex items-center justify-center mb-4 rounded-full bg-blue-100 dark:bg-blue-900">
+          {service.icon}
+        </div>
+        <h4 className="font-semibold text-lg text-gray-800 dark:text-white mb-2">
+          {service.title}
+        </h4>
+        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          {service.desc}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
         <div className="mt-8 flex justify-center">
           {/* <div className="relative w-48 h-48 bg-white dark:bg-gray-700 rounded-xl shadow-lg border border-gray-200 dark:border-gray-600 overflow-hidden">
             <img
