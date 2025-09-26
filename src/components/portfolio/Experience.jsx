@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import api from "../../utils/api.js";
+// src/components/sections/ExperienceSection.jsx
+import { useEffect, useMemo } from "react";
+import useExperienceStore from "../../store/useExperienceStore";
 
 function formatRange(from, to, current) {
   const fmt = (d) => (d ? new Date(d).getFullYear() : "");
@@ -9,25 +10,11 @@ function formatRange(from, to, current) {
 }
 
 export default function ExperienceSection() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { experiences, loading, error, fetchExperiences } = useExperienceStore();
 
   useEffect(() => {
-    let ok = true;
-    (async () => {
-      try {
-        const { data } = await api.get("/experiences");
-        if (!ok) return;
-        setItems(data?.data || []);
-      } catch {
-        setError("Failed to load experience");
-      } finally {
-        if (ok) setLoading(false);
-      }
-    })();
-    return () => { ok = false; };
-  }, []);
+    fetchExperiences();
+  }, [fetchExperiences]);
 
   const content = useMemo(() => {
     if (loading) {
@@ -42,19 +29,24 @@ export default function ExperienceSection() {
         </div>
       );
     }
+
     if (error) {
-      return <p className="text-center text-red-600 dark:text-red-400">{error}</p>;
+      return (
+        <p className="text-center text-red-600 dark:text-red-400">{error}</p>
+      );
     }
-    if (items.length === 0) {
+
+    if (experiences.length === 0) {
       return (
         <p className="text-center text-gray-600 dark:text-gray-400">
           No experience yet.
         </p>
       );
     }
+
     return (
       <div className="space-y-6">
-        {items.map((exp) => (
+        {experiences.map((exp) => (
           <article
             key={exp._id}
             className="rounded-xl bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 shadow-md hover:shadow-xl transition-shadow duration-300 p-6"
@@ -86,7 +78,7 @@ export default function ExperienceSection() {
         ))}
       </div>
     );
-  }, [items, loading, error]);
+  }, [experiences, loading, error]);
 
   return (
     <section

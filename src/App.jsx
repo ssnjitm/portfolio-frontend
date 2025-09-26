@@ -19,6 +19,7 @@ import AdminLogin from './pages/AdminPages/AdminLogin.jsx';
 
 //protected route
 import ProtectedRoute from "./components/AdminDashboard/ProtectedRoute.jsx"; 
+import ContactMessages from './pages/AdminPages/ContactMessages.jsx';
 
 
 
@@ -101,6 +102,15 @@ const App = () => {
           element={
             <ProtectedRoute>
               <AdminProfile />
+            </ProtectedRoute>
+          }
+        />
+
+          <Route
+          path="/admin/contact-messages"
+          element={
+            <ProtectedRoute>
+             <ContactMessages />
             </ProtectedRoute>
           }
         />

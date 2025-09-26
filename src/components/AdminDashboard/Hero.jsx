@@ -36,7 +36,7 @@ const HeroSection = () => {
     {
       title: 'Hiring Messages',
       description: 'Join our team! Check out our hiring opportunities.',
-      link: '/admin/hiring',
+      link: '/admin/contact-messages',
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=200&q=80',
     },
   ];
