@@ -1,4 +1,4 @@
-import { HashRouter ,BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Routes ,BrowserRouter, Routes, Route } from 'react-router-dom';
 import About from './components/portfolio/About.jsx';
 import BackToTop from './components/portfolio/BackToTop.jsx';
 import Contact from './components/portfolio/Contact.jsx';
