@@ -70,9 +70,13 @@ console.<span class="code-function">log</span>(me.<span class="code-function">sa
                 <span className="curly-brace text-blue-600">{'{'}</span>
               </div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-800 dark:text-white mb-4 leading-tight" data-text="Sanjeet Mijar">Sanjeet Mijar</h1>
-              <h2 className="text-2xl text-gray-600 dark:text-gray-300 mb-6 font-semibold">{webContent.heroTitle}</h2>
+              <h2 className="text-2xl text-gray-600 dark:text-gray-300 mb-6 font-semibold">
+                 Full-Stack Developer
+                {/* {webContent.heroTitle }   */}
+</h2>
               <p className="hero-description text-gray-600 dark:text-gray-400 text-lg mb-8 max-w-2xl mx-auto lg:mx-0">
-                {webContent.heroDescription}
+                I build exceptional digital experiences with clean, efficient code. Specializing in modern web technologies and scalable architecture.
+                {/* {webContent.heroDescription} */}
               </p>
           
               <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

@@ -1,5 +1,5 @@
 // src/components/sections/Skills.jsx
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import useSkillStore from "../../store/useSkillStore.js";
 import LogoLoop from "./LogoLoop.jsx";
 import {
@@ -25,6 +25,8 @@ import {
   SiPostman,
   SiFigma,
 } from "react-icons/si";
+import { FaFlutter } from "react-icons/fa6";
+
 
 const Skills = () => {
   const { skills, loading, error, fetchSkills } = useSkillStore();
@@ -45,6 +47,9 @@ const Skills = () => {
     { node: <SiPython className="text-[#3776AB]" />, title: "Python", href: "https://www.python.org" },
     { node: <SiPostman className="text-[#FF6C37]" />, title: "Postman", href: "https://www.postman.com" },
     { node: <SiFigma className="text-[#F24E1E] dark:text-white" />, title: "Figma", href: "https://www.figma.com" },
+    { node: <FaFlutter className="text-[#F24E1E] dark:text-white" />, title: "flutter", href: "https://flutter.dev" },
+
+
   ];
 
   return (

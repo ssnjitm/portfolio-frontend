@@ -52,7 +52,8 @@ useEffect(() => {
         scalable, and user-friendly applications.
       </p>
       <p className="text-lg  about-description text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-      {webContent.aboutMeDescription2}
+      {/* {webContent.aboutMeDescription2} */}
+      I enjoy tackling complex problems and turning them into simple, elegant solutions. My goal is to build software that not only works flawlessly but also provides an exceptional user experience.
       </p>
       <p className="text-lg  about-description text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
         When I'm not coding, I explore new technologies, contribute to
