@@ -61,7 +61,7 @@ const Header = () => {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
           scrolled
-            ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg"
+            ? "bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-800/50"
             : "bg-transparent shadow-sm"
         }`}
       >
@@ -72,11 +72,11 @@ const Header = () => {
               className="logo flex items-center space-x-1 cursor-pointer"
               onClick={() => scrollToSection("hero")}
             >
-              <span className="text-2xl font-bold text-blue-600">{`{`}</span>
-              <span className="text-xl font-bold text-gray-800 dark:text-white">
+              <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">{`{`}</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
                 SANJEET MIJAR
               </span>
-              <span className="text-2xl font-bold text-blue-600">{`}`}</span>
+              <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">{`}`}</span>
             </div>
 
             {/* Desktop Nav Links */}
@@ -85,10 +85,10 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="relative text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 group font-medium"
+                  className="relative text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 group font-mono text-sm"
                 >
+                  <span className="text-blue-400 mr-1">/</span>
                   {item.name}
-                  <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ))}
             </div>
@@ -99,7 +99,7 @@ const Header = () => {
               <button
                 onClick={toggleTheme}
                 className={`relative flex items-center w-14 h-8 rounded-full transition-colors duration-300 ${
-                  darkMode ? "bg-gray-800" : "bg-gray-100"
+                  darkMode ? "bg-gray-800" : "bg-gray-200"
                 }`}
                 aria-label="Toggle theme"
               >
@@ -123,7 +123,7 @@ const Header = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 md:hidden focus:outline-none"
+                className="p-2 rounded-lg text-gray-600 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 md:hidden focus:outline-none"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               >
                 {mobileMenuOpen ? (

@@ -33,10 +33,10 @@ function AdminProjects() {
       setForm({
         title: project.title || "",
         description: project.description || "",
-        techStack: project.techStack || "",
-        projectUrl: project.projectUrl || "",
-        repoUrl: project.repoUrl || "",
-        image: null, // cannot prefill File input
+        techStack: Array.isArray(project.techstack) ? project.techstack.join(", ") : (project.techstack || ""),
+        liveLink: project.liveLink || "",
+        githubLink: project.githubLink || "",
+        image: null,
       });
       setEditingId(project._id);
     } else {
@@ -83,10 +83,9 @@ function AdminProjects() {
 
     formData.append("title", form.title);
     formData.append("description", form.description);
-    formData.append("techStack", form.techStack);
-    formData.append("projectUrl", form.projectUrl);
-    formData.append("githubLink", form.githubLink);  // ✅ matches schema
-    formData.append("liveLink", form.liveLink); 
+    formData.append("techstack", form.techStack);
+    formData.append("githubLink", form.githubLink);
+    formData.append("liveLink", form.liveLink);
 
     if (form.image) formData.append("image", form.image);
 
@@ -141,27 +140,15 @@ function AdminProjects() {
                     )}
                   </td>
                   <td className="p-3 md:table-cell">{proj.title}</td>
-                  <td className="p-3 md:table-cell">{proj.techStack}</td>
                   <td className="p-3 md:table-cell">
-                    {proj.projectUrl && (
-                      <a
-                        href={proj.projectUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-blue-600 underline mr-2"
-                      >
-                        Live
-                      </a>
+                    {Array.isArray(proj.techstack) ? proj.techstack.join(", ") : proj.techstack}
+                  </td>
+                  <td className="p-3 md:table-cell">
+                    {proj.liveLink && (
+                      <a href={proj.liveLink} target="_blank" rel="noreferrer" className="text-blue-600 underline mr-2">Live</a>
                     )}
-                    {proj.repoUrl && (
-                      <a
-                        href={proj.repoUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-gray-700 underline"
-                      >
-                        Repo
-                      </a>
+                    {proj.githubLink && (
+                      <a href={proj.githubLink} target="_blank" rel="noreferrer" className="text-gray-700 underline">Repo</a>
                     )}
                   </td>
                   <td className="p-3 md:table-cell space-x-2">
