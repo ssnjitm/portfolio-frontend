@@ -1,10 +1,11 @@
 // src/store/useContactMessageStore.js
 import { create } from "zustand";
 import axios from "axios";
+import conf from "../conf/conf.js";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/contact-messages`;
+const API_URL = `${conf.apiBaseUrl}/contact-messages`;
 
-const useContactMessageStore = create((set) => ({
+const useContactMessageStore = create((set) => ({ 
   // State
   messages: [],
   loading: false,

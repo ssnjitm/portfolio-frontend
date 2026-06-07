@@ -1,10 +1,11 @@
 // src/store/useSkillStore.js
 import { create } from "zustand";
 import axios from "axios";
+import conf from "../conf/conf.js";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/skills`;
+const API_URL = `${conf.apiBaseUrl}/skills`;
 
-const useSkillStore = create((set, get) => ({
+const useSkillStore = create((set, get) => ({ 
   skills: [],
   loading: false,
   error: null,
