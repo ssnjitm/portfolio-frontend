@@ -1,8 +1,9 @@
 // src/store/useWebContentStore.js
 import { create } from "zustand";
 import axios from "axios";
+import conf from "../conf/conf.js";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/webcontent`;
+const API_URL = `${conf.apiBaseUrl}/webcontent`;
 
 const useWebContentStore = create((set) => ({
   webContent: null,

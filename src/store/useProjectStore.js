@@ -1,7 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
+import conf from "../conf/conf.js";
 
-const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/v1/projects`;
+const API_URL = `${conf.apiBaseUrl}/projects`;
 
 const useProjectStore = create((set) => ({
   projects: [],
